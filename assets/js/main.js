@@ -248,6 +248,110 @@
     });
   }
 
+  /* ===== NAVBAR DROPDOWN ===== */
+  var dropdownToggle = document.querySelector(".navbar__dropdown-toggle");
+  var dropdownMenu = document.querySelector(".navbar__dropdown-menu");
+
+  if (dropdownToggle && dropdownMenu) {
+    dropdownToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle("show");
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".navbar__dropdown")) {
+        dropdownMenu.classList.remove("show");
+      }
+    });
+  }
+
+  /* ===== CONTACT OVERLAY ===== */
+  var contactBranches = {
+    hongkong: {
+      branch: "Hong Kong",
+      phone: "+852 2511 6292",
+      phoneHref: "tel:+85225116292",
+      email: "hongkong@adrianse.com",
+      emailHref: "mailto:hongkong@adrianse.com",
+    },
+    shanghai: {
+      branch: "Shanghai",
+      phone: "+8621 6440 0557",
+      phoneHref: "tel:+862164400557",
+      email: "shanghai@adrianse.com.cn",
+      emailHref: "mailto:shanghai@adrianse.com.cn",
+    },
+    manila: {
+      branch: "Manila",
+      phone: "+632 894 3988 / +632 892 8156",
+      phoneHref: "tel:+6328943988",
+      email: "admin@adriansemanila.com",
+      emailHref: "mailto:admin@adriansemanila.com",
+    },
+  };
+
+  var contactOverlay = document.querySelector(".contact-overlay");
+  var contactBranch = contactOverlay
+    ? contactOverlay.querySelector(".contact-overlay__branch")
+    : null;
+  var contactPhone = contactOverlay
+    ? contactOverlay.querySelector(".contact-overlay__phone")
+    : null;
+  var contactEmail = contactOverlay
+    ? contactOverlay.querySelector(".contact-overlay__email")
+    : null;
+  var contactClose = contactOverlay
+    ? contactOverlay.querySelector(".contact-overlay__close")
+    : null;
+
+  function openContactOverlay(key) {
+    var data = contactBranches[key];
+    if (!data || !contactOverlay) return;
+    contactBranch.textContent = data.branch;
+    contactPhone.innerHTML =
+      '<a href="' + data.phoneHref + '">' + data.phone + "</a>";
+    contactEmail.innerHTML =
+      '<a href="' + data.emailHref + '">' + data.email + "</a>";
+    contactOverlay.classList.add("active");
+    contactOverlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    if (dropdownMenu) dropdownMenu.classList.remove("show");
+  }
+
+  function closeContactOverlay() {
+    if (!contactOverlay) return;
+    contactOverlay.classList.remove("active");
+    contactOverlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("click", function (e) {
+    var branchBtn = e.target.closest("[data-branch]");
+    if (branchBtn) {
+      openContactOverlay(branchBtn.getAttribute("data-branch"));
+    }
+  });
+
+  if (contactClose) {
+    contactClose.addEventListener("click", closeContactOverlay);
+  }
+
+  if (contactOverlay) {
+    contactOverlay.addEventListener("click", function (e) {
+      if (e.target === contactOverlay) closeContactOverlay();
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (
+      contactOverlay &&
+      contactOverlay.classList.contains("active") &&
+      e.key === "Escape"
+    ) {
+      closeContactOverlay();
+    }
+  });
+
   /* ===== PROJECT GRID RENDERING ===== */
   var grid = document.querySelector(".project-grid");
 

@@ -28,9 +28,29 @@
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="about.html">About Us</a></li>
+                <li class="navbar__dropdown">
+                    <button class="navbar__dropdown-toggle">Contact Us</button>
+                    <ul class="navbar__dropdown-menu">
+                        <li><button data-branch="hongkong">Hong Kong</button></li>
+                        <li><button data-branch="shanghai">Shanghai</button></li>
+                        <li><button data-branch="manila">Manila</button></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
+
+    <!-- CONTACT OVERLAY -->
+    <div class="contact-overlay" aria-hidden="true">
+        <div class="contact-overlay__card">
+            <button class="contact-overlay__close" aria-label="Close"></button>
+            <span class="contact-overlay__branch"></span>
+            <div class="contact-overlay__info">
+                <p class="contact-overlay__phone"></p>
+                <p class="contact-overlay__email"></p>
+            </div>
+        </div>
+    </div>
 
     <!-- HERO -->
     <header class="hero">
