@@ -1,7 +1,6 @@
 (function () {
   "use strict";
 
-  /* ===== PROJECT DATA ===== */
   var projects = [
     {
       name: "Sanofi",
@@ -232,7 +231,6 @@
     },
   ];
 
-  /* ===== MOBILE NAV ===== */
   var toggle = document.querySelector(".navbar__toggle");
   var navLinks = document.querySelector(".navbar__links");
 
@@ -248,7 +246,6 @@
     });
   }
 
-  /* ===== NAVBAR DROPDOWN ===== */
   var dropdownToggle = document.querySelector(".navbar__dropdown-toggle");
   var dropdownMenu = document.querySelector(".navbar__dropdown-menu");
 
@@ -265,7 +262,6 @@
     });
   }
 
-  /* ===== CONTACT OVERLAY ===== */
   var contactBranches = {
     hongkong: {
       branch: "Hong Kong",
@@ -352,7 +348,6 @@
     }
   });
 
-  /* ===== PROJECT GRID RENDERING ===== */
   var grid = document.querySelector(".project-grid");
 
   if (grid) {
@@ -383,7 +378,6 @@
     });
   }
 
-  /* ===== FILTER ===== */
   var filterBtns = document.querySelectorAll(".filter-btn");
 
   filterBtns.forEach(function (btn) {
@@ -406,7 +400,6 @@
     });
   });
 
-  /* ===== LIGHTBOX ===== */
   var lightbox = document.querySelector(".lightbox");
   var lightboxImg = document.querySelector(".lightbox__img");
   var lightboxClose = document.querySelector(".lightbox__close");
@@ -455,7 +448,6 @@
     updateLightboxImage();
   }
 
-  /* Click on project card */
   document.addEventListener("click", function (e) {
     var card = e.target.closest(".project-card");
     if (card) {
@@ -481,7 +473,6 @@
     if (e.key === "ArrowLeft") prevImage();
   });
 
-  /* ===== HERO SLIDESHOW ===== */
   var slides = document.querySelectorAll(".hero__slide");
 
   if (slides.length > 1) {
